@@ -1,0 +1,46 @@
+server:
+  port: 8001
+
+security:
+  oauth2:
+    client:
+      client-id: consumer-server-1
+      client-secret: consumer-server-1-1234
+      user-authorization-uri: http://127.0.0.1:6001/server/oauth/authorize
+      access-token-uri: http://127.0.0.1:6001/server/oauth/token
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:6001/server/oauth/token_key
+  
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  #mybatis path
+  type-aliases-package: com.example.demo.enitities #entity path
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml #mapper file
+    
+spring:
+   application:
+    name: microservicecloud-consumer 
+   datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # data source package
+    #driver-class-name: org.gjt.mm.mysql.Driver              # mysql driver
+    url: jdbc:mysql://localhost:3306/cloudDB01              # database name
+    username: root
+    password: 12345
+    dbcp2:
+      min-idle: 5                                           # min connections in database
+      initial-size: 5                                       # init connections
+      max-total: 5                                          # max connections
+      max-wait-millis: 200                                  # max waiting time
+   
+   
+          
+eureka:
+  client: #register to eureka server
+    service-url: 
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+  instance:
+    instance-id: microservicecloud-consumer8001-hystrix   #instance id
+    prefer-ip-address: true     #display ip address
+    
+   

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.ConsumerDao">
+
+	<select id="findById" resultType="Consumer" parameterType="Long">
+		select consumer_no,cname,db_source from Consumer where consumer_no=#{consumer_no};
+	</select>
+	<select id="findAll" resultType="Consumer">
+		select consumer_no,cname,db_source from Consumer;
+	</select>
+	<insert id="addConsumer" parameterType="Consumer">
+		INSERT INTO Consumer(cname,db_source) VALUES(#{cname},DATABASE());
+	</insert>
+
+</mapper>
