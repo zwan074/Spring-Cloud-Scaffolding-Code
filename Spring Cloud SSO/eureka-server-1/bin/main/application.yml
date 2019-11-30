@@ -1,0 +1,13 @@
+server: 
+  port: 7001
+ 
+eureka: 
+  instance:
+    hostname: eureka7001.com #eureka instance name
+    appname: eureka-cluster
+  client: 
+    register-with-eureka: true     
+    fetch-registry: true     
+    service-url: 
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/       
+      defaultZone: http://eureka7002.com:7002/eureka/ #Eureka Server interaction's dependency address 
