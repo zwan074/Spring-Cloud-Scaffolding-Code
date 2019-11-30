@@ -1,0 +1,31 @@
+server: 
+  port: 9527
+  
+security:
+  oauth2:
+    client:
+      client-id: microservicecloud-zuul-gateway
+      client-secret: microservicecloud-zuul-gateway-1234
+      user-authorization-uri: http://127.0.0.1:6001/server/oauth/authorize
+      access-token-uri: http://127.0.0.1:6001/server/oauth/token
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:6001/server/oauth/token_key  
+ 
+spring: 
+  application:
+    name: microservicecloud-zuul-gateway
+ 
+eureka: 
+  client: 
+    service-url: 
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka 
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true 
+ 
+zuul:
+  routes:
+    microservicecloud-producer:
+      path: /api/** 
+
